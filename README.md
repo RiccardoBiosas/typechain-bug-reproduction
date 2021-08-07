@@ -1,4 +1,4 @@
-# @typechain/web3-v1 web3 bug reproduction
+# @typechain/web3-v1 bug reproduction
 
 The repository is a minimal reproduction example of [this issue](https://github.com/ethereum-ts/TypeChain/issues/428) on the typechain repository.
 
