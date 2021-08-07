@@ -11,8 +11,6 @@ import {
   PopulatedTransaction,
   BaseContract,
   ContractTransaction,
-  Overrides,
-  CallOverrides,
 } from "ethers";
 import { BytesLike } from "@ethersproject/bytes";
 import { Listener, Provider } from "@ethersproject/providers";
@@ -20,136 +18,14 @@ import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
 interface TokenSpenderInterface extends ethers.utils.Interface {
-  functions: {
-    "WHITELIST_TIMELOCK()": FunctionFragment;
-    "claimTokens(address,address,address,uint256)": FunctionFragment;
-    "commitTimelock()": FunctionFragment;
-    "commitWhitelist()": FunctionFragment;
-    "getWhitelist()": FunctionFragment;
-    "governor()": FunctionFragment;
-    "proposalTime()": FunctionFragment;
-    "proposeTimelock(uint256)": FunctionFragment;
-    "proposeWhitelist(address[])": FunctionFragment;
-    "proposedTimeLock()": FunctionFragment;
-    "proposedWhitelist(uint256)": FunctionFragment;
-    "setGovernor(address)": FunctionFragment;
-    "timeLockInterval()": FunctionFragment;
-    "timeLockProposalTime()": FunctionFragment;
-  };
-
-  encodeFunctionData(
-    functionFragment: "WHITELIST_TIMELOCK",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "claimTokens",
-    values: [string, string, string, BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "commitTimelock",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "commitWhitelist",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getWhitelist",
-    values?: undefined
-  ): string;
-  encodeFunctionData(functionFragment: "governor", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "proposalTime",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "proposeTimelock",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "proposeWhitelist",
-    values: [string[]]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "proposedTimeLock",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "proposedWhitelist",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(functionFragment: "setGovernor", values: [string]): string;
-  encodeFunctionData(
-    functionFragment: "timeLockInterval",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "timeLockProposalTime",
-    values?: undefined
-  ): string;
-
-  decodeFunctionResult(
-    functionFragment: "WHITELIST_TIMELOCK",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "claimTokens",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "commitTimelock",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "commitWhitelist",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getWhitelist",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "governor", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "proposalTime",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "proposeTimelock",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "proposeWhitelist",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "proposedTimeLock",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "proposedWhitelist",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "setGovernor",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "timeLockInterval",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "timeLockProposalTime",
-    data: BytesLike
-  ): Result;
+  functions: {};
 
   events: {
     "Committed(uint256)": EventFragment;
-    "GovernorSet(address)": EventFragment;
     "Proposed(uint256)": EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: "Committed"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "GovernorSet"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Proposed"): EventFragment;
 }
 
@@ -196,272 +72,21 @@ export class TokenSpender extends BaseContract {
 
   interface: TokenSpenderInterface;
 
-  functions: {
-    WHITELIST_TIMELOCK(overrides?: CallOverrides): Promise<[BigNumber]>;
+  functions: {};
 
-    claimTokens(
-      token: string,
-      from: string,
-      to: string,
-      amount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    commitTimelock(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    commitWhitelist(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    getWhitelist(overrides?: CallOverrides): Promise<[string[]]>;
-
-    governor(overrides?: CallOverrides): Promise<[string]>;
-
-    proposalTime(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    proposeTimelock(
-      _timelock: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    proposeWhitelist(
-      _whitelist: string[],
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    proposedTimeLock(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    proposedWhitelist(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
-
-    setGovernor(
-      _governor: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    timeLockInterval(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    timeLockProposalTime(overrides?: CallOverrides): Promise<[BigNumber]>;
-  };
-
-  WHITELIST_TIMELOCK(overrides?: CallOverrides): Promise<BigNumber>;
-
-  claimTokens(
-    token: string,
-    from: string,
-    to: string,
-    amount: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  commitTimelock(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  commitWhitelist(
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  getWhitelist(overrides?: CallOverrides): Promise<string[]>;
-
-  governor(overrides?: CallOverrides): Promise<string>;
-
-  proposalTime(overrides?: CallOverrides): Promise<BigNumber>;
-
-  proposeTimelock(
-    _timelock: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  proposeWhitelist(
-    _whitelist: string[],
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  proposedTimeLock(overrides?: CallOverrides): Promise<BigNumber>;
-
-  proposedWhitelist(
-    arg0: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
-  setGovernor(
-    _governor: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  timeLockInterval(overrides?: CallOverrides): Promise<BigNumber>;
-
-  timeLockProposalTime(overrides?: CallOverrides): Promise<BigNumber>;
-
-  callStatic: {
-    WHITELIST_TIMELOCK(overrides?: CallOverrides): Promise<BigNumber>;
-
-    claimTokens(
-      token: string,
-      from: string,
-      to: string,
-      amount: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    commitTimelock(overrides?: CallOverrides): Promise<void>;
-
-    commitWhitelist(overrides?: CallOverrides): Promise<void>;
-
-    getWhitelist(overrides?: CallOverrides): Promise<string[]>;
-
-    governor(overrides?: CallOverrides): Promise<string>;
-
-    proposalTime(overrides?: CallOverrides): Promise<BigNumber>;
-
-    proposeTimelock(
-      _timelock: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    proposeWhitelist(
-      _whitelist: string[],
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    proposedTimeLock(overrides?: CallOverrides): Promise<BigNumber>;
-
-    proposedWhitelist(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<string>;
-
-    setGovernor(_governor: string, overrides?: CallOverrides): Promise<void>;
-
-    timeLockInterval(overrides?: CallOverrides): Promise<BigNumber>;
-
-    timeLockProposalTime(overrides?: CallOverrides): Promise<BigNumber>;
-  };
+  callStatic: {};
 
   filters: {
     Committed(
       timelock?: null
     ): TypedEventFilter<[BigNumber], { timelock: BigNumber }>;
 
-    GovernorSet(
-      governor?: null
-    ): TypedEventFilter<[string], { governor: string }>;
-
     Proposed(
       timelock?: null
     ): TypedEventFilter<[BigNumber], { timelock: BigNumber }>;
   };
 
-  estimateGas: {
-    WHITELIST_TIMELOCK(overrides?: CallOverrides): Promise<BigNumber>;
+  estimateGas: {};
 
-    claimTokens(
-      token: string,
-      from: string,
-      to: string,
-      amount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    commitTimelock(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    commitWhitelist(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    getWhitelist(overrides?: CallOverrides): Promise<BigNumber>;
-
-    governor(overrides?: CallOverrides): Promise<BigNumber>;
-
-    proposalTime(overrides?: CallOverrides): Promise<BigNumber>;
-
-    proposeTimelock(
-      _timelock: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    proposeWhitelist(
-      _whitelist: string[],
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    proposedTimeLock(overrides?: CallOverrides): Promise<BigNumber>;
-
-    proposedWhitelist(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    setGovernor(
-      _governor: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    timeLockInterval(overrides?: CallOverrides): Promise<BigNumber>;
-
-    timeLockProposalTime(overrides?: CallOverrides): Promise<BigNumber>;
-  };
-
-  populateTransaction: {
-    WHITELIST_TIMELOCK(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    claimTokens(
-      token: string,
-      from: string,
-      to: string,
-      amount: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    commitTimelock(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    commitWhitelist(
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    getWhitelist(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    governor(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    proposalTime(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    proposeTimelock(
-      _timelock: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    proposeWhitelist(
-      _whitelist: string[],
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    proposedTimeLock(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    proposedWhitelist(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    setGovernor(
-      _governor: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    timeLockInterval(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    timeLockProposalTime(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-  };
+  populateTransaction: {};
 }

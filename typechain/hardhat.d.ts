@@ -17,10 +17,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.TokenSpender__factory>;
     getContractFactory(
-      name: "Whitelisted",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Whitelisted__factory>;
-    getContractFactory(
       name: "WhitelistedWithGovernance",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.WhitelistedWithGovernance__factory>;
@@ -28,10 +24,6 @@ declare module "hardhat/types/runtime" {
       name: "WhitelistedWithGovernanceAndChangableTimelock",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.WhitelistedWithGovernanceAndChangableTimelock__factory>;
-    getContractFactory(
-      name: "IERC20",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC20__factory>;
 
     // default types
     getContractFactory(

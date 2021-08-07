@@ -1,26 +1,24 @@
-import { HardhatUserConfig } from 'hardhat/config'
-import '@nomiclabs/hardhat-truffle5'
-import "hardhat-typechain"
+import { HardhatUserConfig } from "hardhat/types";
+import "@typechain/hardhat";
+import "@nomiclabs/hardhat-ethers";
 
 const config: HardhatUserConfig = {
+  defaultNetwork: "hardhat",
   networks: {
-    hardhat: {
+    hardhat: {   
     },
   },
   solidity: {
-    version: "0.5.16",
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 200
+    compilers: [
+      {
+        version: "0.5.16",
       },
-      evmVersion: "istanbul"
-    }
+    ],
   },
-
   typechain: {
-    target: 'truffle-v5'
+    outDir: "typechain",
+    target: "ethers-v5",
   },
-}
+};
 
-export default config
+export default config;
